@@ -17,12 +17,12 @@ public class Test1 {
         LocalDate dateOfBirn5 = LocalDate.of(1985, 5, 5);
         LocalDate dateOfBirn6 = LocalDate.of(1981, 8, 8);
 
-        Student st1 = new Student("Olga", dateOfBirn1, "2", 10);
-        Student st2 = new Student("Petr", dateOfBirn2, "8", 20);
-        Student st3 = new Student("Tatiana", dateOfBirn3, "6", 30);
-        Student st4 = new Student("Alex", dateOfBirn4, "5", 40);
-        Student st5 = new Student("Sergei", dateOfBirn5, "7",50);
-        Student st6 = new Student("Olgaa", dateOfBirn6, "3", 60);
+        Student st1 = new Student("Olga", dateOfBirn1, "2");
+        Student st2 = new Student("Petr", dateOfBirn2, "8" );
+        Student st3 = new Student("Tatiana", dateOfBirn3, "6" );
+        Student st4 = new Student("Alex", dateOfBirn4, "5" );
+        Student st5 = new Student("Sergei", dateOfBirn5, "7");
+        Student st6 = new Student("Olgaa", dateOfBirn6, "3");
 
         Map<Student, Integer> map = new TreeMap<>();
 

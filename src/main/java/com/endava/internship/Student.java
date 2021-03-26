@@ -9,14 +9,11 @@ public class Student implements Comparable<Student>
     private String name;
     private LocalDate dateOfBirth;
     private String details;
-    private int age;
 
-    public Student(String name, LocalDate dateOfBirth, String details, int age) {
+    public Student(String name, LocalDate dateOfBirth, String details) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.details = details;
-        this.age = age;
-
     }
 
     public String getName() { return name; }
