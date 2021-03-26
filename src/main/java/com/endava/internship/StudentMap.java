@@ -3,7 +3,7 @@ package com.endava.internship;
 import java.util.*;
 
 
-public class StudentMap<Student, Integer> implements Map<Student, Integer> {
+public class StudentMap<K, V> implements Map<Student, Integer> {
 
     private int count;
     private boolean root = true;
@@ -60,7 +60,7 @@ public class StudentMap<Student, Integer> implements Map<Student, Integer> {
     @Override
     public Integer get(Object o) {
 
-        return null;
+        return 10;
     }
 
     @Override
@@ -86,8 +86,8 @@ public class StudentMap<Student, Integer> implements Map<Student, Integer> {
 //            System.out.println("Right");
 //        }
             System.out.print("new key = " + newNode.key);
-            System.out.println(" + new value = " + newNode.value);
-            //System.out.println("  " + newNode.key.compareTo(rootNode.key));
+            System.out.print(" + new value = " + newNode.value);
+            System.out.println("  " + newNode.key.compareTo(rootNode.key));
 
         }
 
@@ -128,5 +128,11 @@ public class StudentMap<Student, Integer> implements Map<Student, Integer> {
         //Ignore this for homework
         throw new UnsupportedOperationException();
     }
+
+
+//    public int compareTo(com.endava.internship.Student student1, com.endava.internship.Student student2) {
+//
+//        return student1.name.compareTo(student.name);
+//    }
 }
 

@@ -21,32 +21,31 @@ public class Test1 {
         Student st2 = new Student("Petr", dateOfBirn2, "8" );
         Student st3 = new Student("Tatiana", dateOfBirn3, "6" );
         Student st4 = new Student("Alex", dateOfBirn4, "5" );
-        Student st5 = new Student("Sergei", dateOfBirn5, "7");
+        Student st5 = new Student("Bergei", dateOfBirn5, "7");
         Student st6 = new Student("Olgaa", dateOfBirn6, "3");
 
-        Map<Student, Integer> map = new TreeMap<>();
+//        Map<Student, Integer> map = new TreeMap<>();
+//        map.put(st1, 1);
+//        map.put(st2, 2);
+//        map.put(st3, 3);
+//        map.put(st4, 4);
+//        map.put(st5, 5);
+//        map.put(st6, 6);
+//        System.out.println(map);
 
-        map.put(st1, 1);
-        map.put(st2, 2);
-        map.put(st3, 3);
-        map.put(st4, 4);
-        map.put(st5, 5);
-        map.put(st6, 6);
 
+        StudentMap<Student, Integer> map = new StudentMap<>();
 
+        //System.out.println(st4 + " N = " + map.size());
+        map.put(st1, 10);
+        map.put(st2, 20);
+        map.put(st3, 30);
+        map.put(st4, 40);
+        map.put(st5, 50);
+        map.put(st6, 60);
+
+        System.out.println("number of students = " +map.size());
         System.out.println(map);
-
-
-//        StudentMap<Student, Integer> map = new StudentMap<>();
-//
-//        map.put(st4, 14);
-//        //System.out.println(st4 + " N = " + map.size());
-//        map.put(st3,12);
-//        map.put(st2, 13);
-//        map.put(st1, 11);
-//        map.put(st5, 15);
-//
-//        System.out.println("number of students = " +map.size());
     }
 
 }
