@@ -16,13 +16,13 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         Integer value;
         Node left = null;
         Node right = null;
-        Node parent = null;
+        Node parent;
 
 
         public Node(Student key, Integer value, Node parent){
             this.key = key;
             this.value = value;
-            //this.parent = parent;
+            this.parent = parent;
         }
     }
 
@@ -30,7 +30,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
     public String toString() {
         return "StudentMap{" +
                 "count=" + count +
-                " '}'";
+                "}";
     }
 
     @Override
@@ -77,20 +77,55 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
             System.out.println("The root is = " + newNode.key + " - value = " + newNode.value);
             System.out.println("-----------------------------");
             root = false;   // first element added
-        }else{
+        }else {
             //add new element
+            Node current= rootNode;
+            Node previous = null;
+            int searchDirection;
 
-//        if(newNode.key.equals(rootNode.key)){
-//            System.out.println("Left");
-//        }else{
-//            System.out.println("Right");
-//        }
-            System.out.print("new key = " + newNode.key);
-            System.out.print(" + new value = " + newNode.value);
-            System.out.println("  " + newNode.key.compareTo(rootNode.key));
+            searchDirection = newNode.key.compareTo(current.key);
 
+            while(current != null){
+                // compare current object with next object (if < move left, if > move right
+                searchDirection = newNode.key.compareTo(current.key);
+                if (searchDirection < 0) {  // move left
+                    // if object is less than root object
+                    // for test
+                    System.out.print("newNode = " + newNode.key + " " + searchDirection);
+
+                    previous = current;
+                    current = current.left;
+
+                } else {
+                    if (searchDirection > 0) {  // move right
+                        // if object is more than root object
+                        // for test
+                        System.out.print("newNode = " + newNode.key + " " + searchDirection);
+
+                        previous =current;
+                        current = current.right;
+
+                    } else {
+                        // if object and root are equals
+                        // for test
+                        System.out.print("newNode = " + newNode.key + " " + searchDirection);
+
+                    }
+                }
+
+            }   // end while != null
+            if(searchDirection < 0){    // change left reference
+                previous.left = newNode;
+                newNode.parent = previous;
+            }else {
+                if (searchDirection > 0) {    // change right reference
+                    previous.right = newNode;
+                    newNode.parent = previous;
+                } else {  // change current value
+                    previous.value = newNode.value;
+                }
+            }
         }
-
         count++;
         return null;
     }
@@ -129,10 +164,5 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         throw new UnsupportedOperationException();
     }
 
-
-//    public int compareTo(com.endava.internship.Student student1, com.endava.internship.Student student2) {
-//
-//        return student1.name.compareTo(student.name);
-//    }
 }
 

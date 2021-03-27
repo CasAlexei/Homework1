@@ -23,26 +23,21 @@ public class Test1 {
         Student st4 = new Student("Alex", dateOfBirn4, "5" );
         Student st5 = new Student("Bergei", dateOfBirn5, "7");
         Student st6 = new Student("Olgaa", dateOfBirn6, "3");
+        Student st7 = new Student("Olga", dateOfBirn1, "2");
 
+        // use test TreeMap from Java
 //        Map<Student, Integer> map = new TreeMap<>();
-//        map.put(st1, 1);
-//        map.put(st2, 2);
-//        map.put(st3, 3);
-//        map.put(st4, 4);
-//        map.put(st5, 5);
-//        map.put(st6, 6);
-//        System.out.println(map);
 
-
+        // use my own TreeMap
         StudentMap<Student, Integer> map = new StudentMap<>();
 
-        //System.out.println(st4 + " N = " + map.size());
         map.put(st1, 10);
         map.put(st2, 20);
         map.put(st3, 30);
         map.put(st4, 40);
         map.put(st5, 50);
         map.put(st6, 60);
+        map.put(st7, 70);
 
         System.out.println("number of students = " +map.size());
         System.out.println(map);
