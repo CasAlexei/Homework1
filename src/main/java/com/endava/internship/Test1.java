@@ -49,12 +49,16 @@ public class Test1 {
         System.out.println("Get student st5: value = " + search);
 
         System.out.println("-------------------------------");
-        System.out.println("Print Map");
+        System.out.println("Print Map:");
         map.outAll();
 
         System.out.println("-------------------------------");
-        System.out.println("Delete student ");
-        map.remove(st5);
+        System.out.println("Delete student: ");
+        map.remove(st2);
+        System.out.println("Size of map = " + map.size());
+        System.out.println("-------------------------------");
+        System.out.println("New TreeMap:");
+        map.outAll();
     }
 
 }
