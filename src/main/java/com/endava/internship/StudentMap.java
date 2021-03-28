@@ -81,7 +81,6 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
     }
 
     public void getAll(Node top){
-        System.out.println("get all");
         Stack<Node> stack = new Stack<>();
             while (top!=null || !stack.empty()){
                 if (!stack.empty()){
@@ -110,7 +109,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         if(root){
             rootNode = newNode;
             System.out.println("The root is = " + newNode.key + " - value = " + newNode.value);
-            System.out.println("-----------------------------");
+            System.out.println("--------------------------------------------------");
             root = false;   // first element added
         }else {
             //add new element
@@ -126,7 +125,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                 if (searchDirection < 0) {  // move left
                     // if object is less than root object
                     // for test
-                    System.out.println("newNode = " + newNode.key + " " + searchDirection);
+                    System.out.println("newNode=" + newNode.key.getName() + " order=" + searchDirection);
 
                     previous = current;
                     current = current.left;
@@ -135,7 +134,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                     if (searchDirection > 0) {  // move right
                         // if object is more than root object
                         // for test
-                        System.out.println("newNode = " + newNode.key + " " + searchDirection);
+                        System.out.println("newNode=" + newNode.key.getName() + " order=" + searchDirection);
 
                         previous =current;
                         current = current.right;
@@ -143,7 +142,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                     } else {
                         // if object and root are equals
                         // for test
-                        System.out.println("newNode = " + newNode.key + " " + searchDirection);
+                        System.out.println("newNode=" + newNode.key.getName() + " order=" + searchDirection);
                         previous = current;
                         current = null;
 
@@ -183,6 +182,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
             --count;    // change size of collection
         }
 
+        getAll(nodeToRemove);
 
 
 
