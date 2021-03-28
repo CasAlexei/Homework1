@@ -54,7 +54,7 @@ public class Test1 {
 
         System.out.println("-------------------------------");
         System.out.println("Delete student: ");
-        map.remove(st2);
+        map.remove(st4);
         System.out.println("Size of map = " + map.size());
         System.out.println("-------------------------------");
         System.out.println("New TreeMap:");

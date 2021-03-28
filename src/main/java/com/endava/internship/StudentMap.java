@@ -168,27 +168,57 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         // search note to delete
         Node nodeToRemove = get(rootNode, (Student) o);
 
+        Node top = null;
+        Node previous = null;
+
         System.out.println("Student to remove=" + nodeToRemove.key.getName());
 
-        // if object have`t children
+        // if the object has no children
         if(nodeToRemove.left == null && nodeToRemove.right == null){
             if(nodeToRemove == nodeToRemove.parent.left){
                 nodeToRemove.parent.left = null;
             }else nodeToRemove.parent.right = null;
             nodeToRemove.parent = null;
 
-            --count;    // change size of collection
+            System.out.println("left==null && right==null");
+            --count;    // decrement size of collection
         }
 
-        if(nodeToRemove.left != null && nodeToRemove.right != null) {
-            Node top = null;
-            Node previous = null;
-            Node current = null;
-
+        // if the object has only right child
+        if(nodeToRemove.left == null && nodeToRemove.right != null) {
             previous = nodeToRemove.parent;
-            previous.right = nodeToRemove.right;
-            top = nodeToRemove.left;
+            if(previous.right == nodeToRemove) {
+                previous.right = nodeToRemove.right;
+            }else {
+                previous.left = nodeToRemove.right;
+            }
+            System.out.println("left==null && right!=null");
+            --count;    // decrement size of collection
+        }
 
+        // if the object has only left child
+        if(nodeToRemove.left != null && nodeToRemove.right == null) {
+            previous = nodeToRemove.parent;
+            if(previous.right == nodeToRemove) {
+                previous.right = nodeToRemove.left;
+            }else {
+                previous.left = nodeToRemove.left;
+            }
+            System.out.println("left!=null && right==null");
+            --count;    // decrement size of collection
+        }
+
+        // if the object has both children
+        if(nodeToRemove.left != null && nodeToRemove.right != null) {
+            previous = nodeToRemove.parent;
+            if(previous.right == nodeToRemove) {
+                previous.right = nodeToRemove.right;
+                top = nodeToRemove.left;
+            }else {
+                previous.left = nodeToRemove.left;
+                top = nodeToRemove.right;
+            }
+            // use iterator to reput nodes
             Stack<Node> stack = new Stack<>();
             while (top != null || !stack.empty()) {
                 if (!stack.empty()) {
@@ -200,14 +230,9 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                     top = top.left;
                 }
             }
+            System.out.println("left!=null && right!=null");
+            --count;    // decrement size of collection
         }
-
-
-        //getAll(nodeToRemove);
-
-
-
-
         return null;
     }
 
