@@ -28,40 +28,45 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
 
     @Override
     public String toString() {
-        return "StudentMap{" +
-                "count=" + count +
-                "}";
+        return "";
     }
 
+    public void outAll(){
+        getAll(rootNode);
+    }
+
+    // returns the number of key-value mappings in this map
     @Override
     public int size() {
-        //TODO
         return count;
     }
 
+    // returns true if this map contains no key-value mappings
     @Override
     public boolean isEmpty() {
-        //TODO
-        return false;
+        return count == 0;
     }
 
+    // returns true if this map contains a mapping for the specified key
     @Override
     public boolean containsKey(Object o) {
         //TODO
         return false;
     }
 
+    // returns true if this map maps one or more keys to the specified value
     @Override
     public boolean containsValue(Object o) {
         //TODO
         return false;
     }
+
     // return value associated with the given key, or null if no such key exists
     @Override
     public Integer get(Object o) {
-        return get(rootNode, (Student) o);
+        return get(rootNode, (Student) o).value;
     }
-    public Integer get(Node current, Student key) {
+    public Node get(Node current, Student key) {
         while (current != null) {
             int searchDirection = key.compareTo(current.key);
             if(searchDirection < 0){
@@ -70,12 +75,30 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                 if(searchDirection > 0){
                     current = current.right;
                 }
-            else return current.value;
+            else return current;
         }
         return null;
     }
 
-      @Override
+    public void getAll(Node top){
+        System.out.println("get all");
+        Stack<Node> stack = new Stack<>();
+            while (top!=null || !stack.empty()){
+                if (!stack.empty()){
+                    top=stack.pop();
+                }
+                while (top!=null){
+                    System.out.println("key=" + top.key.getName() + " value=" + top.value);
+                    if (top.right!=null) stack.push(top.right);
+                    top=top.left;
+                }
+            }
+
+        return;
+    }
+
+    // associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced
+    @Override
     public Integer put(Student student, Integer integer) {
 
         if(student==null)
@@ -144,28 +167,50 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         return null;
     }
 
+    // Removes the mapping for this key from this TreeMap if present.
     @Override
     public Integer remove(Object o) {
-        //TODO
+        // search note to delete
+        Node nodeToRemove = get(rootNode, (Student) o);
+
+        // if object have`t children
+        if(nodeToRemove.left == null && nodeToRemove.right == null){
+            if(nodeToRemove == nodeToRemove.parent.left){
+                nodeToRemove.parent.left = null;
+            }else nodeToRemove.parent.right = null;
+            nodeToRemove.parent = null;
+
+            --count;    // change size of collection
+        }
+
+
+
+
+
         return null;
     }
 
+
+    // Copies all of the mappings from the specified map to this map. These mappings replace any mappings that this map had for any of the keys currently in the specified map
     @Override
     public void putAll(Map<? extends Student, ? extends Integer> map) {
         //TODO
     }
 
+    // removes all of the mappings from this map. The map will be empty after this call returns
     @Override
     public void clear() {
         //TODO
     }
 
+    // returns a Set view of the keys contained in this map
     @Override
     public Set<Student> keySet() {
         //TODO
         return null;
     }
 
+    // returns a Collection view of the values contained in this map
     @Override
     public Collection<Integer> values() {
         //TODO

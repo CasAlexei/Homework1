@@ -41,8 +41,12 @@ public class Test1 {
 
         System.out.println("number of students = " +map.size());
 
-        int search = map.get(st7);
-        System.out.println(search);
+        int search = map.get(st5);
+        System.out.println("value = " + search);
+
+        System.out.println(map);
+
+        map.outAll();
     }
 
 }
