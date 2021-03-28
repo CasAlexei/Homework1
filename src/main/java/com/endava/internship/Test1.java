@@ -40,7 +40,9 @@ public class Test1 {
         map.put(st7, 70);
 
         System.out.println("number of students = " +map.size());
-        System.out.println(map);
+
+        int search = map.get(st7);
+        System.out.println(search);
     }
 
 }

@@ -56,14 +56,26 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         //TODO
         return false;
     }
-
+    // return value associated with the given key, or null if no such key exists
     @Override
     public Integer get(Object o) {
-
-        return 10;
+        return get(rootNode, (Student) o);
+    }
+    public Integer get(Node current, Student key) {
+        while (current != null) {
+            int searchDirection = key.compareTo(current.key);
+            if(searchDirection < 0){
+                current = current.left;
+            }else
+                if(searchDirection > 0){
+                    current = current.right;
+                }
+            else return current.value;
+        }
+        return null;
     }
 
-    @Override
+      @Override
     public Integer put(Student student, Integer integer) {
 
         if(student==null)
@@ -91,7 +103,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                 if (searchDirection < 0) {  // move left
                     // if object is less than root object
                     // for test
-                    System.out.print("newNode = " + newNode.key + " " + searchDirection);
+                    System.out.println("newNode = " + newNode.key + " " + searchDirection);
 
                     previous = current;
                     current = current.left;
@@ -100,7 +112,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                     if (searchDirection > 0) {  // move right
                         // if object is more than root object
                         // for test
-                        System.out.print("newNode = " + newNode.key + " " + searchDirection);
+                        System.out.println("newNode = " + newNode.key + " " + searchDirection);
 
                         previous =current;
                         current = current.right;
@@ -108,7 +120,9 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                     } else {
                         // if object and root are equals
                         // for test
-                        System.out.print("newNode = " + newNode.key + " " + searchDirection);
+                        System.out.println("newNode = " + newNode.key + " " + searchDirection);
+                        previous = current;
+                        current = null;
 
                     }
                 }
