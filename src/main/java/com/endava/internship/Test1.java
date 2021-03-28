@@ -45,7 +45,7 @@ public class Test1 {
         System.out.println("Number of students = " +map.size());
 
         System.out.println("-------------------------------");
-        System.out.println("Get student: value = " + map.get(st5));
+        System.out.println("Get student st5: value = " + map.get(st5));
 
         System.out.println("-------------------------------");
         System.out.println("Print Map:");
