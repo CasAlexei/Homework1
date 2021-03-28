@@ -44,13 +44,23 @@ public class Test1 {
 
         System.out.println("Number of students = " +map.size());
 
-        int search = map.get(st5);
         System.out.println("-------------------------------");
-        System.out.println("Get student st5: value = " + search);
+        System.out.println("Get student: value = " + map.get(st5));
 
         System.out.println("-------------------------------");
         System.out.println("Print Map:");
-        map.outAll();
+        System.out.println(map);
+
+        System.out.println("-------------------------------");
+        System.out.println("Search student in map:");
+        System.out.println("student st5 = " + map.containsKey(st5));
+        System.out.println("student st100 = " + map.containsKey(st100));
+
+        System.out.println("-------------------------------");
+        System.out.println("Search value:");
+        System.out.println("value 50 = " + map.containsValue(50));
+        System.out.println("value 88 = " + map.containsValue(88));
+
 
         System.out.println("-------------------------------");
         System.out.println("Delete student: ");
@@ -58,7 +68,7 @@ public class Test1 {
         System.out.println("Size of map = " + map.size());
         System.out.println("-------------------------------");
         System.out.println("New TreeMap:");
-        map.outAll();
+        System.out.println(map);
     }
 
 }

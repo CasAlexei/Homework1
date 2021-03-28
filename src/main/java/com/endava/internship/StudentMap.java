@@ -28,11 +28,9 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
 
     @Override
     public String toString() {
-        return "";
-    }
-
-    public void outAll(){
+        System.out.print("StudentMap = ");
         getAll(rootNode);
+        return " }";
     }
 
     // returns the number of key-value mappings in this map
@@ -50,32 +48,48 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
     // returns true if this map contains a mapping for the specified key
     @Override
     public boolean containsKey(Object o) {
-        //TODO
+        if(get(rootNode, (Student) o) != null)
+            return true;
         return false;
     }
 
     // returns true if this map maps one or more keys to the specified value
     @Override
     public boolean containsValue(Object o) {
-        //TODO
+        Node top = rootNode;
+        Stack<Node> stack = new Stack<>();
+        while (top!=null || !stack.empty()){
+            if (!stack.empty()){
+                top=stack.pop();
+            }
+            while (top!=null){
+                if(top.value == (Integer)o)
+                    return true;
+                if (top.right!=null) stack.push(top.right);
+                top=top.left;
+            }
+        }
         return false;
     }
 
     // return value associated with the given key, or null if no such key exists
     @Override
     public Integer get(Object o) {
-        return get(rootNode, (Student) o).value;
+        Node node = get(rootNode, (Student) o);
+        if(node == null)
+            return null;
+        else return node.value;
+
     }
     public Node get(Node current, Student key) {
         while (current != null) {
             int searchDirection = key.compareTo(current.key);
             if(searchDirection < 0){
                 current = current.left;
-            }else
-                if(searchDirection > 0){
-                    current = current.right;
-                }
-            else return current;
+            } else if (searchDirection > 0) {
+                current = current.right;
+            } else if (searchDirection == 0)
+                return current;
         }
         return null;
     }
@@ -87,13 +101,11 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                     top=stack.pop();
                 }
                 while (top!=null){
-                    System.out.println("key=" + top.key.getName() + " value=" + top.value);
+                    System.out.print("{name=" + top.key.getName() + ", date of birn=" +top.key.getDateOfBirth() + ", detail=" + top.key.getDetails() + "}, " + top.value + ", ");
                     if (top.right!=null) stack.push(top.right);
                     top=top.left;
                 }
             }
-
-        return;
     }
 
     // associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced
@@ -121,24 +133,24 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                 // compare current object with next object (if < move left, if > move right
                 searchDirection = newNode.key.compareTo(current.key);
                 if (searchDirection < 0) {  // move left, if new object is less than current object
-                    // for test
-                    System.out.println("newNode=" + newNode.key.getName() + " order=" + searchDirection);
+
+                    //System.out.println("newNode=" + newNode.key.getName() + " order=" + searchDirection); // for test
 
                     previous = current;
                     current = current.left;
 
                 } else {
                     if (searchDirection > 0) {  // move right, if new object is more than current object
-                        // for test
-                        System.out.println("newNode=" + newNode.key.getName() + " order=" + searchDirection);
+
+                        //System.out.println("newNode=" + newNode.key.getName() + " order=" + searchDirection); // for test
 
                         previous =current;
                         current = current.right;
 
                     } else {
                         // if new object and current are equals
-                        // for test
-                        System.out.println("newNode=" + newNode.key.getName() + " order=" + searchDirection);
+
+                        //System.out.println("newNode=" + newNode.key.getName() + " order=" + searchDirection); // for test
                         previous = current;
                         current = null;
 
@@ -180,7 +192,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
             }else nodeToRemove.parent.right = null;
             nodeToRemove.parent = null;
 
-            System.out.println("left==null && right==null");
+            //System.out.println("left==null && right==null");  // for test
             --count;    // decrement size of collection
         }
 
@@ -192,7 +204,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
             }else {
                 previous.left = nodeToRemove.right;
             }
-            System.out.println("left==null && right!=null");
+            //System.out.println("left==null && right!=null");  // for test
             --count;    // decrement size of collection
         }
 
@@ -204,11 +216,12 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
             }else {
                 previous.left = nodeToRemove.left;
             }
-            System.out.println("left!=null && right==null");
+            //System.out.println("left!=null && right==null");  // for test
             --count;    // decrement size of collection
         }
 
         // if the object has both children
+        // can`t remove root object
         if(nodeToRemove.left != null && nodeToRemove.right != null) {
             previous = nodeToRemove.parent;
             if(previous.right == nodeToRemove) {
@@ -230,7 +243,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                     top = top.left;
                 }
             }
-            System.out.println("left!=null && right!=null");
+            //  System.out.println("left!=null && right!=null");    // for test
             --count;    // decrement size of collection
         }
         return null;
@@ -246,7 +259,9 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
     // removes all of the mappings from this map. The map will be empty after this call returns
     @Override
     public void clear() {
-        //TODO
+        count = 0;
+        rootNode = null;
+        root = true;
     }
 
     // returns a Set view of the keys contained in this map
