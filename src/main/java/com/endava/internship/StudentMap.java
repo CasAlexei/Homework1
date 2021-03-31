@@ -11,7 +11,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
 //    private boolean rootIsEmpty = true;    // need to create root Node if collection is empty
     private Node root = null;   // root Node
 
-    class Node {
+    static class Node {
         Student key;
         Integer value;
         Node left = null;
@@ -65,19 +65,22 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                 current = current.left;
             } else if (searchDirection > 0) {
                 current = current.right;
-            } else if (searchDirection == 0)
-                return current;
+            } else return current;
         }
         return null;
     }
 
+    void print(){
+        printTreeInOrder(root);
+    }
+
     //Inorder Printing
-    private void printTreeInOrder(Node root){
-        if(root==null)
+    private void printTreeInOrder(Node node){
+        if(node==null)
             return;
-        printTreeInOrder(root.left);
-        System.out.print(root.key + "=" + root.value + ", ");
-        printTreeInOrder(root.right);
+        printTreeInOrder(node.left);
+        System.out.print(node.key + "=" + node.value + ", ");
+        printTreeInOrder(node.right);
     }
 
     // associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced
@@ -130,8 +133,11 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         // search note to delete
         Node nodeToRemove = findNode((Student) o);
 
-        Node top = null;
-        Node previous = null;
+        if(nodeToRemove==null){
+            return null;
+        }
+        Node top;
+        Node previous;
 
         System.out.println("Student to remove=" + nodeToRemove.key);
 
@@ -143,7 +149,8 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
             nodeToRemove.parent = null;
 
             //System.out.println("left==null && right==null");  // for test
-            return --size;    // decrement size of collection
+            --size;    // decrement size of collection
+           //return size;
         }
 
         // if the object has only right child
@@ -155,7 +162,8 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                 previous.left = nodeToRemove.right;
             }
             //System.out.println("left==null && right!=null");  // for test
-            return --size;    // decrement size of collection
+            --size;    // decrement size of collection
+            //return size;
         }
 
         // if the object has only left child
@@ -167,12 +175,14 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                 previous.left = nodeToRemove.left;
             }
             //System.out.println("left!=null && right==null");  // for test
-            return --size;    // decrement size of collection
+            --size;    // decrement size of collection
+            //return size;
         }
 
         // if the object has both children
         // can`t remove root object
         if(nodeToRemove.left != null && nodeToRemove.right != null) {
+            null
             previous = nodeToRemove.parent;
             if(previous.right == nodeToRemove) {
                 previous.right = nodeToRemove.right;
@@ -182,19 +192,13 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
                 top = nodeToRemove.right;
             }
             // put elements in the tree
-            if(true){
-                put(top) {
-            }
-                --size; // decrement size because in method put size incrementing
-            }
+            put(top.key, top.value);
+            --size; // decrement size because in method put size incrementing
+
             //  System.out.println("left!=null && right!=null");    // for test
 
-
-                --size;    // decrement size of collection
+            --size;    // decrement size of collection
         }
-
-
-
 
         return size;
     }
