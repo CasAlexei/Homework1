@@ -1,5 +1,6 @@
 package com.endava.internship;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,14 +12,22 @@ class StudentMapTest {
 
     @Test
     @DisplayName("test method put")
-    void put() {
+    void testPutMethod() {
         StudentMap<Student, Integer> map = new StudentMap();
 
         LocalDate dateOfBirn6 = LocalDate.of(1981, 8, 8);
-        Student st1 = new Student("Alex", dateOfBirn6, "50");
+        Student st1 = new Student("Olga", dateOfBirn6, "6");
+        Student st2 = new Student("Petr", dateOfBirn6, "5");
+        Student st3 = new Student("Alex", dateOfBirn6, "8");
 
         map.put(st1, 10);
-        assertEquals(10, map.get(st1));
+        map.put(st2, 20);
+        map.put(st3, 30);
+
+        assertFalse(map.isEmpty());
+        assertEquals(30, map.get(st3));
+        assertEquals(3, map.size());
+
     }
 
     @Test
@@ -26,9 +35,7 @@ class StudentMapTest {
 
     }
 
-    @Test
-    void testToString() {
-    }
+
 
     @Test
     @DisplayName("test size()")
@@ -45,6 +52,10 @@ class StudentMapTest {
 
     @Test
     void isEmpty() {
+        StudentMap<Student, Integer> map = new StudentMap();
+
+        assertTrue(map.size() == 0);
+//        assertEquals(map.);
     }
 
     @Test
@@ -60,19 +71,22 @@ class StudentMapTest {
     }
 
     @Test
-    void testGet1() {
-    }
-
-    @Test
-    void testPut() {
-    }
-
-    @Test
     void remove() {
     }
 
     @Test
     void clear() {
+        StudentMap<Student, Integer> map = new StudentMap();
+        LocalDate dateOfBirn6 = LocalDate.of(1981, 8, 8);
+        Student st1 = new Student("Alex", dateOfBirn6, "50");
+
+        map.put(st1, 10);
+
+        assertFalse(map.isEmpty());
+
+        map.clear();
+
+        assertTrue(map.isEmpty());
     }
 
     @Test
@@ -81,9 +95,5 @@ class StudentMapTest {
 
     @Test
     void values() {
-    }
-
-    @Test
-    void entrySet() {
     }
 }

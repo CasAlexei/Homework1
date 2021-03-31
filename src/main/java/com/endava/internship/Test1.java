@@ -1,10 +1,9 @@
 package com.endava.internship;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 
 public class Test1 {
 
@@ -28,6 +27,11 @@ public class Test1 {
 
         Student st100 = new Student("Het", dateOfBirn100, "100");
 
+//        System.out.println("equals = "+ st1.equals(st7));
+//        System.out.println("compareTo = "+ st1.compareTo(st5));
+//        System.out.println(st1);
+
+
         // use test TreeMap from Java
 //        Map<Student, Integer> map = new TreeMap<>();
 
@@ -40,35 +44,35 @@ public class Test1 {
         map.put(st4, 40);
         map.put(st5, 50);
         map.put(st6, 60);
-        map.put(st7, 70);
+        //map.put(st7, 70);
 
         System.out.println("Number of students = " +map.size());
 
         System.out.println("-------------------------------");
-        System.out.println("Get student st5: value = " + map.get(st5));
+        System.out.println("Get student, value = " + map.get(st3));
 
         System.out.println("-------------------------------");
-        System.out.println("Print Map:");
-        System.out.println(map);
+        Set<Student> set1 = map.keySet();
+        System.out.println("KeySet = " + set1);
 
         System.out.println("-------------------------------");
         System.out.println("Search student in map:");
         System.out.println("student st5 = " + map.containsKey(st5));
         System.out.println("student st100 = " + map.containsKey(st100));
-
-        System.out.println("-------------------------------");
-        System.out.println("Search value:");
-        System.out.println("value 50 = " + map.containsValue(50));
-        System.out.println("value 88 = " + map.containsValue(88));
-
-
-        System.out.println("-------------------------------");
-        System.out.println("Delete student: ");
-        map.remove(st4);
-        System.out.println("Size of map = " + map.size());
-        System.out.println("-------------------------------");
-        System.out.println("New TreeMap:");
-        System.out.println(map);
+//
+//        System.out.println("-------------------------------");
+//        System.out.println("Search value:");
+//        System.out.println("value 50 = " + map.containsValue(50));
+//        System.out.println("value 88 = " + map.containsValue(88));
+//
+//
+//        System.out.println("-------------------------------");
+//        System.out.println("Delete student: ");
+//        map.remove(st4);
+//        System.out.println("Size of map = " + map.size());
+//        System.out.println("-------------------------------");
+//        System.out.println("New TreeMap:");
+//        System.out.println(map);
     }
 
 }

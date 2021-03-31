@@ -2,6 +2,7 @@ package com.endava.internship;
 
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 public class Student implements Comparable<Student>
@@ -31,14 +32,24 @@ public class Student implements Comparable<Student>
 
     @Override
     public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                '}';
+        return "Student {name =" + name + "," + " birn on=" + dateOfBirth + "," + " details=" + details + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(name, student.name) && Objects.equals(dateOfBirth, student.dateOfBirth);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, dateOfBirth);
     }
 
     @Override
     public int compareTo(Student student) {
-
         return this.name.compareTo(student.name);
     }
 }
