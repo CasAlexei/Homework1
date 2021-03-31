@@ -127,9 +127,75 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
 
     @Override
     public Integer remove(Object o) {
-        if(size>0){
-            --size;
+        // search note to delete
+        Node nodeToRemove = findNode((Student) o);
+
+        Node top = null;
+        Node previous = null;
+
+        System.out.println("Student to remove=" + nodeToRemove.key);
+
+        // if the object has no children
+        if(nodeToRemove.left == null && nodeToRemove.right == null){
+            if(nodeToRemove == nodeToRemove.parent.left){
+                nodeToRemove.parent.left = null;
+            }else nodeToRemove.parent.right = null;
+            nodeToRemove.parent = null;
+
+            //System.out.println("left==null && right==null");  // for test
+            return --size;    // decrement size of collection
         }
+
+        // if the object has only right child
+        if(nodeToRemove.left == null && nodeToRemove.right != null) {
+            previous = nodeToRemove.parent;
+            if(previous.right == nodeToRemove) {
+                previous.right = nodeToRemove.right;
+            }else {
+                previous.left = nodeToRemove.right;
+            }
+            //System.out.println("left==null && right!=null");  // for test
+            return --size;    // decrement size of collection
+        }
+
+        // if the object has only left child
+        if(nodeToRemove.left != null && nodeToRemove.right == null) {
+            previous = nodeToRemove.parent;
+            if(previous.right == nodeToRemove) {
+                previous.right = nodeToRemove.left;
+            }else {
+                previous.left = nodeToRemove.left;
+            }
+            //System.out.println("left!=null && right==null");  // for test
+            return --size;    // decrement size of collection
+        }
+
+        // if the object has both children
+        // can`t remove root object
+        if(nodeToRemove.left != null && nodeToRemove.right != null) {
+            previous = nodeToRemove.parent;
+            if(previous.right == nodeToRemove) {
+                previous.right = nodeToRemove.right;
+                top = nodeToRemove.left;
+            }else {
+                previous.left = nodeToRemove.left;
+                top = nodeToRemove.right;
+            }
+            // put elements in the tree
+            if(true){
+                put(top) {
+            }
+                --size; // decrement size because in method put size incrementing
+            }
+            //  System.out.println("left!=null && right!=null");    // for test
+
+
+                --size;    // decrement size of collection
+        }
+
+
+
+
         return size;
     }
 
