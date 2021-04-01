@@ -1,9 +1,6 @@
 package com.endava.internship;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class StudentMap<K, V> implements Map<Student, Integer> {
 
@@ -24,16 +21,19 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         }
     }
 
+    // returns the number of key-value mappings in this map
     @Override
     public int size() {
         return size;
     }
 
+    // returns true if this map contains no key-value mappings
     @Override
     public boolean isEmpty() {
         return size==0;
     }
 
+    // returns true if this map contains a mapping for the specified key
     @Override
     public boolean containsKey(Object o) {
         Node needNode = findNode((Student)o);
@@ -41,12 +41,14 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         return (needNode!=null);
     }
 
+    // returns true if this map maps one or more keys to the specified value
     @Override
     public boolean containsValue(Object o) {
         //TODO
         return false;
     }
 
+    // return value associated with the given key, or null if no such key exists
     @Override
     public Integer get(Object o) {
         if(root==null)
@@ -70,6 +72,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         return null;
     }
 
+    // print TreeMap in order
     void print(){
         printTreeInOrder(root);
     }
@@ -128,6 +131,7 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         return null;
     }
 
+    // Removes the mapping for this key from this TreeMap if present
     @Override
     public Integer remove(Object o) {
         // search note to delete
@@ -182,7 +186,6 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         // if the object has both children
         // can`t remove root object
         if(nodeToRemove.left != null && nodeToRemove.right != null) {
-            null
             previous = nodeToRemove.parent;
             if(previous.right == nodeToRemove) {
                 previous.right = nodeToRemove.right;
@@ -203,20 +206,23 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         return size;
     }
 
+    // Copies all of the mappings from the specified map to this map. These mappings replace any mappings that this map had for any of the keys currently in the specified map
     @Override
     public void putAll(Map<? extends Student, ? extends Integer> map) {
         //TODO
     }
 
+    // removes all of the mappings from this map. The map will be empty after this call returns
     @Override
     public void clear() {
         root = null;
         size = 0;
     }
 
+    // returns a Set view of the keys contained in this map
     @Override
     public Set<Student> keySet() {
-        Set<Student> set = new HashSet<>();
+        Set<Student> set = new TreeSet<>();
 
         makeSetOfStudent(root, set);
 
@@ -226,11 +232,11 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
         if(node==null)
             return;
         makeSetOfStudent(node.left, set);
-        //System.out.print(node.key + "=" + node.value + ", ");
         set.add(node.key);
         makeSetOfStudent(node.right, set);
     }
 
+    // returns a Collection view of the values contained in this map
     @Override
     public Collection<Integer> values() {
         //TODO

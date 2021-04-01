@@ -1,9 +1,8 @@
 package com.endava.internship;
 
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Test1 {
 
@@ -52,7 +51,8 @@ public class Test1 {
         System.out.println("Get student, value = " + map.get(st3));
 
         System.out.println("-------------------------------");
-        Set<Student> set1 = map.keySet();
+        Set<Student> set1 = new TreeSet<>();
+        set1 = map.keySet();
         System.out.println("KeySet = " + set1);
 
         System.out.println("-------------------------------");
@@ -68,7 +68,7 @@ public class Test1 {
         System.out.println("-------------------------------");
         map.print();
         System.out.println("Delete student: ");
-        map.remove(st1);
+        map.remove(st3);
         System.out.println("Size of map = " + map.size());
         map.print();
 
