@@ -44,8 +44,8 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
     // returns true if this map maps one or more keys to the specified value
     @Override
     public boolean containsValue(Object o) {
-        //TODO
-        return false;
+        Collection<Integer> list = values();
+        return list.contains(o);
     }
 
     // return value associated with the given key, or null if no such key exists
@@ -239,10 +239,19 @@ public class StudentMap<K, V> implements Map<Student, Integer> {
     // returns a Collection view of the values contained in this map
     @Override
     public Collection<Integer> values() {
-        //TODO
-        return null;
-    }
+        List<Integer> listOfValues = new ArrayList<>();
 
+        makeListOfValues(root, listOfValues);
+
+        return listOfValues;
+    }
+    private void makeListOfValues(Node node, List list){
+        if(node==null)
+            return;
+        makeListOfValues(node.left, list);
+        list.add(node.value);
+        makeListOfValues(node.right, list);
+    }
 
 
 

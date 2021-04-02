@@ -3,9 +3,9 @@ package com.endava.internship;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Array;
 import java.time.LocalDate;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -99,18 +99,33 @@ class StudentMapTest {
         Student st1 = new Student("Olga", dateOfBirn6, "6");
         Student st2 = new Student("Petr", dateOfBirn6, "5");
         Student st3 = new Student("Alex", dateOfBirn6, "8");
+        Student st8 = new Student("Net", dateOfBirn6, "888");
 
         map.put(st1, 10);
         map.put(st2, 20);
         map.put(st3, 30);
 
-        assertEquals(100, 2);
+        boolean result = map.containsKey(st3);
+        assertTrue(result);
     }
 
     @Test
     @DisplayName("test method containsValue()")
     void containsValue() {
-        assertEquals(100, 2);
+        StudentMap<Student, Integer> map = new StudentMap();
+
+        LocalDate dateOfBirn6 = LocalDate.of(1981, 8, 8);
+        Student st1 = new Student("Olga", dateOfBirn6, "6");
+        Student st2 = new Student("Petr", dateOfBirn6, "5");
+        Student st3 = new Student("Alex", dateOfBirn6, "8");
+
+        map.put(st1, 10);
+        map.put(st2, 20);
+        map.put(st3, 30);
+
+        boolean result = map.containsValue(20);
+
+        assertTrue(result);
     }
 
     @Test
@@ -194,6 +209,18 @@ class StudentMapTest {
     @Test
     @DisplayName("test method values()")
     void values() {
-        assertEquals(100, 2);
+        StudentMap<Student, Integer> map = new StudentMap();
+        List<Integer> list = Arrays.asList(30, 10, 20);
+
+        LocalDate dateOfBirn6 = LocalDate.of(1981, 8, 8);
+        Student st1 = new Student("Olga", dateOfBirn6, "6");
+        Student st2 = new Student("Petr", dateOfBirn6, "5");
+        Student st3 = new Student("Alex", dateOfBirn6, "8");
+
+        map.put(st1, 10);
+        map.put(st2, 20);
+        map.put(st3, 30);
+
+        assertArrayEquals(list.toArray(), map.values().toArray());
     }
 }

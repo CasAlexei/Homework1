@@ -1,8 +1,7 @@
 package com.endava.internship;
 
 import java.time.LocalDate;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Test1 {
 
@@ -32,7 +31,14 @@ public class Test1 {
 
 
         // use test TreeMap from Java
-//        Map<Student, Integer> map = new TreeMap<>();
+//        Map<Student, Integer> mapJava = new TreeMap<>();
+//        mapJava.put(st1, 10);
+//        mapJava.put(st2, 20);
+//        mapJava.put(st3, 30);
+//        mapJava.put(st4, 40);
+//        mapJava.put(st5, 50);
+//        boolean b = mapJava.containsValue(508);
+//        System.out.println("mapJava = " + b);
 
         // use my own TreeMap
         StudentMap<Student, Integer> map = new StudentMap<>();
@@ -72,9 +78,15 @@ public class Test1 {
         System.out.println("Size of map = " + map.size());
         map.print();
 
-//        System.out.println("-------------------------------");
-//        System.out.println("New TreeMap:");
-//        System.out.println(map);
+        System.out.println();
+        System.out.println("-------------------------------");
+        System.out.println("TreeMap containce value = " + map.containsValue(50));
+
+        System.out.println();
+        System.out.println("-------------------------------");
+        System.out.println("List of values:");
+        Object[] list = map.values().toArray();
+        System.out.println(Arrays.toString(list));
     }
 
 }
